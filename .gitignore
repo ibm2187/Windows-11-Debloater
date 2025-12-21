@@ -1,0 +1,6 @@
+# Runtime folders
+logs/
+backups/
+
+# Claude Code settings
+.claude/

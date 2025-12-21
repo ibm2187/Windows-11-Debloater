@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "description": "Windows 11 Debloat - App Configuration",
+  "lastUpdated": "2025-01-15",
+  "categories": {
+    "microsoft": {
+      "description": "Microsoft pre-installed apps",
+      "apps": [
+        { "packageName": "Microsoft.549981C3F5F10", "displayName": "Cortana", "safe": true },
+        { "packageName": "Microsoft.BingNews", "displayName": "Bing News", "safe": true },
+        { "packageName": "Microsoft.BingWeather", "displayName": "Bing Weather", "safe": true },
+        { "packageName": "Microsoft.BingFinance", "displayName": "Bing Finance", "safe": true },
+        { "packageName": "Microsoft.BingSports", "displayName": "Bing Sports", "safe": true },
+        { "packageName": "Microsoft.BingTranslator", "displayName": "Bing Translator", "safe": true },
+        { "packageName": "Microsoft.BingSearch", "displayName": "Bing Search", "safe": true },
+        { "packageName": "Microsoft.Copilot", "displayName": "Microsoft Copilot", "safe": true },
+        { "packageName": "Microsoft.GetHelp", "displayName": "Get Help", "safe": true },
+        { "packageName": "Microsoft.Getstarted", "displayName": "Tips", "safe": true },
+        { "packageName": "Microsoft.Microsoft3DViewer", "displayName": "3D Viewer", "safe": true },
+        { "packageName": "Microsoft.MicrosoftOfficeHub", "displayName": "Office Hub", "safe": true },
+        { "packageName": "Microsoft.MicrosoftSolitaireCollection", "displayName": "Solitaire Collection", "safe": true },
+        { "packageName": "Microsoft.MixedReality.Portal", "displayName": "Mixed Reality Portal", "safe": true },
+        { "packageName": "Microsoft.OneConnect", "displayName": "Paid WiFi & Cellular", "safe": true },
+        { "packageName": "Microsoft.People", "displayName": "People", "safe": true },
+        { "packageName": "Microsoft.Print3D", "displayName": "Print 3D", "safe": true },
+        { "packageName": "Microsoft.SkypeApp", "displayName": "Skype", "safe": true },
+        { "packageName": "Microsoft.Wallet", "displayName": "Microsoft Pay", "safe": true },
+        { "packageName": "Microsoft.WindowsFeedbackHub", "displayName": "Feedback Hub", "safe": true },
+        { "packageName": "Microsoft.WindowsMaps", "displayName": "Windows Maps", "safe": true },
+        { "packageName": "Microsoft.YourPhone", "displayName": "Phone Link", "safe": true },
+        { "packageName": "Microsoft.ZuneMusic", "displayName": "Groove Music", "safe": true },
+        { "packageName": "Microsoft.ZuneVideo", "displayName": "Movies & TV", "safe": true },
+        { "packageName": "Clipchamp.Clipchamp", "displayName": "Clipchamp", "safe": true },
+        { "packageName": "Microsoft.PowerAutomateDesktop", "displayName": "Power Automate", "safe": true },
+        { "packageName": "MicrosoftCorporationII.QuickAssist", "displayName": "Quick Assist", "safe": true },
+        { "packageName": "Microsoft.WindowsCommunicationsApps", "displayName": "Mail and Calendar", "safe": true },
+        { "packageName": "MicrosoftTeams", "displayName": "Microsoft Teams", "safe": true },
+        { "packageName": "MSTeams", "displayName": "Microsoft Teams (New)", "safe": true },
+        { "packageName": "Microsoft.OutlookForWindows", "displayName": "New Outlook", "safe": true },
+        { "packageName": "Microsoft.DevHome", "displayName": "Dev Home", "safe": true },
+        { "packageName": "Microsoft.Todos", "displayName": "Microsoft To Do", "safe": true },
+        { "packageName": "Microsoft.WindowsAlarms", "displayName": "Alarms & Clock", "safe": true },
+        { "packageName": "Microsoft.WindowsSoundRecorder", "displayName": "Voice Recorder", "safe": true }
+      ]
+    },
+    "thirdParty": {
+      "description": "Third-party sponsored apps",
+      "apps": [
+        { "packageName": "SpotifyAB.SpotifyMusic", "displayName": "Spotify", "safe": true },
+        { "packageName": "Disney.37853FC22B2CE", "displayName": "Disney+", "safe": true },
+        { "packageName": "AmazonVideo.PrimeVideo", "displayName": "Prime Video", "safe": true },
+        { "packageName": "4DF9E0F8.Netflix", "displayName": "Netflix", "safe": true },
+        { "packageName": "king.com.BubbleWitch3Saga", "displayName": "Bubble Witch 3 Saga", "safe": true },
+        { "packageName": "king.com.CandyCrushSaga", "displayName": "Candy Crush Saga", "safe": true },
+        { "packageName": "king.com.CandyCrushSodaSaga", "displayName": "Candy Crush Soda Saga", "safe": true },
+        { "packageName": "king.com.CandyCrushFriends", "displayName": "Candy Crush Friends", "safe": true },
+        { "packageName": "king.com.FarmHeroesSaga", "displayName": "Farm Heroes Saga", "safe": true },
+        { "packageName": "Facebook.Instagram", "displayName": "Instagram", "safe": true },
+        { "packageName": "Facebook.Facebook", "displayName": "Facebook", "safe": true },
+        { "packageName": "ByteDancePte.Ltd.TikTok", "displayName": "TikTok", "safe": true },
+        { "packageName": "5A894077.McAfeeSecurity", "displayName": "McAfee Security", "safe": true },
+        { "packageName": "CAF9E577.Plex", "displayName": "Plex", "safe": true },
+        { "packageName": "NORDVPN.NORDVPN", "displayName": "NordVPN", "safe": true },
+        { "packageName": "A278AB0D.DisneyMagicKingdoms", "displayName": "Disney Magic Kingdoms", "safe": true },
+        { "packageName": "A278AB0D.MarchofEmpires", "displayName": "March of Empires", "safe": true },
+        { "packageName": "Zynga.FarmVille2CountryEscape", "displayName": "FarmVille 2", "safe": true },
+        { "packageName": "GAMELOFTSA.Asphalt8Airborne", "displayName": "Asphalt 8", "safe": true },
+        { "packageName": "flaregamesGmbH.RoyalRevolt2", "displayName": "Royal Revolt 2", "safe": true },
+        { "packageName": "Playtika.CaesarsSlotsFreeCasino", "displayName": "Caesars Slots", "safe": true },
+        { "packageName": "D5EA27B7.Duolingo-LearnLanguagesforFree", "displayName": "Duolingo", "safe": true },
+        { "packageName": "AdobeSystemsIncorporated.AdobePhotoshopExpress", "displayName": "Adobe Photoshop Express", "safe": true },
+        { "packageName": "WinZipComputing.WinZipUniversal", "displayName": "WinZip", "safe": true },
+        { "packageName": "2FE3CB00.PicsArt-PhotoStudio", "displayName": "PicsArt", "safe": true },
+        { "packageName": "7EE7776C.LinkedInforWindows", "displayName": "LinkedIn", "safe": true },
+        { "packageName": "Drawboard.DrawboardPDF", "displayName": "Drawboard PDF", "safe": true }
+      ]
+    }
+  },
+  "whitelist": {
+    "description": "Apps that should never be removed",
+    "apps": [
+      "Microsoft.WindowsStore",
+      "Microsoft.WindowsTerminal",
+      "Microsoft.WindowsCalculator",
+      "Microsoft.Windows.Photos",
+      "Microsoft.WindowsNotepad",
+      "Microsoft.ScreenSketch",
+      "Microsoft.WindowsCamera",
+      "Microsoft.Paint",
+      "Microsoft.MSPaint",
+      "Microsoft.Xbox*",
+      "Microsoft.XboxApp",
+      "Microsoft.XboxGameOverlay",
+      "Microsoft.XboxGamingOverlay",
+      "Microsoft.XboxIdentityProvider",
+      "Microsoft.XboxSpeechToTextOverlay",
+      "Microsoft.GamingApp"
+    ]
+  },
+  "windows11_24h2": {
+    "description": "Windows 11 24H2 specific apps",
+    "apps": [
+      { "packageName": "MicrosoftWindows.Client.AIX", "displayName": "AI Experience", "safe": true },
+      { "packageName": "Microsoft.Windows.Ai.Copilot", "displayName": "Copilot (System)", "safe": true },
+      { "packageName": "MicrosoftWindows.CrossDevice", "displayName": "Cross Device", "safe": true }
+    ]
+  }
+}
