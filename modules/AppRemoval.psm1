@@ -42,7 +42,9 @@ $Script:MicrosoftBloatware = @(
     @{ PackageName = "Microsoft.DevHome"; DisplayName = "Dev Home" },
     @{ PackageName = "Microsoft.Todos"; DisplayName = "Microsoft To Do" },
     @{ PackageName = "Microsoft.WindowsAlarms"; DisplayName = "Alarms & Clock" },
-    @{ PackageName = "Microsoft.WindowsSoundRecorder"; DisplayName = "Voice Recorder" }
+    @{ PackageName = "Microsoft.WindowsSoundRecorder"; DisplayName = "Voice Recorder" },
+    @{ PackageName = "MicrosoftWindows.Client.AIX"; DisplayName = "AI Experience" },
+    @{ PackageName = "Microsoft.Windows.Ai.Copilot"; DisplayName = "Copilot (System)" }
 )
 
 $Script:ThirdPartyBloatware = @(

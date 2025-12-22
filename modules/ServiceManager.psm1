@@ -51,6 +51,12 @@ $Script:NetworkServices = @(
     @{ Name = "NetTcpPortSharing"; DisplayName = "Net.Tcp Port Sharing"; Description = "WCF port sharing" }
 )
 
+# AI services (disable to prevent AI features)
+$Script:AIServices = @(
+    @{ Name = "WSService"; DisplayName = "Windows AI Fabric Service"; Description = "Windows AI infrastructure" },
+    @{ Name = "WpcMonSvc"; DisplayName = "Parental Controls (AI-linked)"; Description = "Family safety AI features" }
+)
+
 # Bluetooth/Mobile services (disable if not using Bluetooth)
 $Script:BluetoothServices = @(
     @{ Name = "BTAGService"; DisplayName = "Bluetooth Audio Gateway"; Description = "Bluetooth audio routing" },
@@ -321,19 +327,53 @@ function Disable-BluetoothServices {
     return $results
 }
 
+function Disable-AIServices {
+    [CmdletBinding()]
+    param()
+
+    Write-Log "Disabling AI services..."
+
+    $results = @{
+        Disabled = 0
+        Failed = 0
+        NotFound = 0
+        AlreadyDisabled = 0
+    }
+
+    foreach ($svc in $Script:AIServices) {
+        $result = Disable-DebloatService -ServiceName $svc.Name -DisplayName $svc.DisplayName -StopService
+
+        switch ($result.Status) {
+            "Disabled" { $results.Disabled++ }
+            "Failed" { $results.Failed++ }
+            "NotFound" { $results.NotFound++ }
+            "AlreadyDisabled" { $results.AlreadyDisabled++ }
+        }
+    }
+
+    Write-Log "AI services: $($results.Disabled) disabled, $($results.AlreadyDisabled) already disabled" -Level Success
+    return $results
+}
+
 function Disable-AllDebloatServices {
     [CmdletBinding()]
     param(
         [switch]$IncludeOptional,
         [switch]$IncludePrint,
         [switch]$IncludeNetwork,
-        [switch]$IncludeBluetooth
+        [switch]$IncludeBluetooth,
+        [switch]$IncludeAI = $true
     )
 
     Write-Log "Disabling all debloat services..."
 
     $telemetryResults = Disable-TelemetryServices
     $privacyResults = Disable-PrivacyServices
+
+    $aiResults = @{ Disabled = 0 }
+    if ($IncludeAI) {
+        $aiResults = Disable-AIServices
+    }
 
     $optionalResults = @{ Disabled = 0 }
     if ($IncludeOptional) {
@@ -358,11 +398,12 @@ function Disable-AllDebloatServices {
     return @{
         Telemetry = $telemetryResults
         Privacy = $privacyResults
+        AI = $aiResults
         Optional = $optionalResults
         Print = $printResults
         Network = $networkResults
         Bluetooth = $bluetoothResults
-        TotalDisabled = $telemetryResults.Disabled + $privacyResults.Disabled + $optionalResults.Disabled + $printResults.Disabled + $networkResults.Disabled + $bluetoothResults.Disabled
+        TotalDisabled = $telemetryResults.Disabled + $privacyResults.Disabled + $aiResults.Disabled + $optionalResults.Disabled + $printResults.Disabled + $networkResults.Disabled + $bluetoothResults.Disabled
     }
 }
 
@@ -465,6 +506,21 @@ function Show-ServiceStatus {
     }
 
     Write-Host ""
+    Write-Host "AI Services:" -ForegroundColor Yellow
+    foreach ($svc in $Script:AIServices) {
+        $service = Get-Service -Name $svc.Name -ErrorAction SilentlyContinue
+        if ($service) {
+            $status = $service.Status
+            $startType = (Get-WmiObject Win32_Service -Filter "Name='$($svc.Name)'" -ErrorAction SilentlyContinue).StartMode
+            $color = if ($startType -eq "Disabled") { "Green" } elseif ($startType -eq "Manual") { "Yellow" } else { "White" }
+            Write-Host "  $($svc.DisplayName): $startType ($status)" -ForegroundColor $color
+        }
+        else {
+            Write-Host "  $($svc.DisplayName): Not Found" -ForegroundColor Gray
+        }
+    }
+
+    Write-Host ""
     Write-Host "Note: Xbox services are kept enabled for gaming compatibility." -ForegroundColor Cyan
     Write-Host ""
 }
@@ -479,6 +535,7 @@ Export-ModuleMember -Function @(
     'Disable-PrintServices',
     'Disable-NetworkServices',
     'Disable-BluetoothServices',
+    'Disable-AIServices',
     'Disable-AllDebloatServices',
     'Show-ServiceStatus'
 )

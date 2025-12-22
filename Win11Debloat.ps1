@@ -71,6 +71,7 @@ $Script:CustomOptions = [ordered]@{
     "DisableTelemetrySvc"    = @{ Enabled = $true;  Name = "Disable telemetry services"; Category = "Services"; Description = "DiagTrack, WAP Push, Inventory" }
     "DisablePrivacySvc"      = @{ Enabled = $false; Name = "Disable privacy services"; Category = "Services"; Description = "Geolocation, Maps, Diagnostics" }
     "DisableOptionalSvc"     = @{ Enabled = $false; Name = "Disable optional services"; Category = "Services"; Description = "Search, Superfetch" }
+    "DisableAISvc"           = @{ Enabled = $true;  Name = "Disable AI services"; Category = "Services"; Description = "Windows AI Fabric, AI features" }
     "DisablePrintSvc"        = @{ Enabled = $false; Name = "Disable print services"; Category = "Services"; Description = "Spooler, Fax (if no printer)" }
     "DisableNetworkSvc"      = @{ Enabled = $false; Name = "Disable network services"; Category = "Services"; Description = "RemoteRegistry, UPnP, ICS" }
     "DisableBluetoothSvc"    = @{ Enabled = $false; Name = "Disable Bluetooth services"; Category = "Services"; Description = "Bluetooth, Mobile Hotspot" }
@@ -178,11 +179,12 @@ function Show-ServiceMenu {
     Write-Host ""
     Write-Host "    [1] Disable Telemetry Services" -ForegroundColor White
     Write-Host "    [2] Disable Privacy-Related Services" -ForegroundColor White
-    Write-Host "    [3] Disable Print/Fax Services" -ForegroundColor White
-    Write-Host "    [4] Disable Remote/Network Services" -ForegroundColor White
-    Write-Host "    [5] Disable Bluetooth/Mobile Services" -ForegroundColor White
-    Write-Host "    [6] Disable All Recommended Services" -ForegroundColor White
-    Write-Host "    [7] View Current Service Status" -ForegroundColor White
+    Write-Host "    [3] Disable AI Services" -ForegroundColor White
+    Write-Host "    [4] Disable Print/Fax Services" -ForegroundColor White
+    Write-Host "    [5] Disable Remote/Network Services" -ForegroundColor White
+    Write-Host "    [6] Disable Bluetooth/Mobile Services" -ForegroundColor White
+    Write-Host "    [7] Disable All Recommended Services" -ForegroundColor White
+    Write-Host "    [8] View Current Service Status" -ForegroundColor White
     Write-Host ""
     Write-Host "    [B] Back to Main Menu" -ForegroundColor Gray
     Write-Host ""
@@ -271,6 +273,7 @@ function Reset-CustomDefaults {
     $Script:CustomOptions["DisableTelemetrySvc"].Enabled = $true
     $Script:CustomOptions["DisablePrivacySvc"].Enabled = $false
     $Script:CustomOptions["DisableOptionalSvc"].Enabled = $false
+    $Script:CustomOptions["DisableAISvc"].Enabled = $true
     $Script:CustomOptions["DisablePrintSvc"].Enabled = $false
     $Script:CustomOptions["DisableNetworkSvc"].Enabled = $false
     $Script:CustomOptions["DisableBluetoothSvc"].Enabled = $false
@@ -407,6 +410,10 @@ function Invoke-CustomDebloat {
 
     if ($Script:CustomOptions["DisableOptionalSvc"].Enabled) {
         Disable-OptionalServices -All
+    }
+
+    if ($Script:CustomOptions["DisableAISvc"].Enabled) {
+        Disable-AIServices
     }
 
     if ($Script:CustomOptions["DisablePrintSvc"].Enabled) {
@@ -628,25 +635,30 @@ function Start-InteractiveMode {
                         }
                         "3" {
                             Write-Host ""
-                            Disable-PrintServices
+                            Disable-AIServices
                             Pause-Script
                         }
                         "4" {
                             Write-Host ""
-                            Disable-NetworkServices
+                            Disable-PrintServices
                             Pause-Script
                         }
                         "5" {
                             Write-Host ""
-                            Disable-BluetoothServices
+                            Disable-NetworkServices
                             Pause-Script
                         }
                         "6" {
                             Write-Host ""
-                            Disable-AllDebloatServices -IncludePrint -IncludeNetwork -IncludeBluetooth
+                            Disable-BluetoothServices
                             Pause-Script
                         }
                         "7" {
+                            Write-Host ""
+                            Disable-AllDebloatServices -IncludePrint -IncludeNetwork -IncludeBluetooth
+                            Pause-Script
+                        }
+                        "8" {
                             Show-ServiceStatus
                             Pause-Script
                         }
